@@ -17,6 +17,14 @@ public class UtilisateurController {
         utilisateurService.addUtilisateur(utilisateur);
     }
 
+
+    @PostMapping("/login")
+    public boolean login(@RequestParam("mot_de_passe") String password, @RequestParam("login") String login) {
+        Utilisateur utilisateur = new Utilisateur(login, password);
+        return utilisateurService.login(utilisateur.getLogin(), utilisateur.getMot_de_passe());
+    }
+
+
     @GetMapping
     public List<Utilisateur> getUtilisateurs(Integer id) {
         return utilisateurService.getUtilisateurs();

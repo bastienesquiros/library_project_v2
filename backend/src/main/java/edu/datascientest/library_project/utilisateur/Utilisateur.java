@@ -55,6 +55,11 @@ public class Utilisateur {
 
     }
 
+    public Utilisateur(String login, String mot_de_passe) {
+        this.login = login;
+        this.mot_de_passe = mot_de_passe;
+    }
+
     @Override
     public String toString() {
         return "Utilisateur{" +

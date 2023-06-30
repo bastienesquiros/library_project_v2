@@ -31,4 +31,15 @@ public class UtilisateurService {
         return utilisateurRepository.findAll();
 
     }
+
+    public boolean login(String login, String password) {
+        Utilisateur utilisateurInput = new Utilisateur(login, password);
+        Utilisateur utilisateurToCompareWith = utilisateurRepository.findByLogin(login);
+
+        if (utilisateurToCompareWith == null) {
+            return false;
+        }
+
+        return utilisateurInput.getLogin().equals(utilisateurToCompareWith.getLogin()) && utilisateurInput.getMot_de_passe().equals(utilisateurToCompareWith.getMot_de_passe());
+    }
 }
