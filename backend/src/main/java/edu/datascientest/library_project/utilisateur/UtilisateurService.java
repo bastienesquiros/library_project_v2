@@ -41,6 +41,7 @@ public class UtilisateurService {
             return false;
         }
 
+        
         return utilisateurInput.getLogin().equals(utilisateurToCompareWith.getLogin()) &&
                 utilisateurInput.getMot_de_passe().equals(utilisateurToCompareWith.getMot_de_passe());
     }
@@ -54,6 +55,10 @@ public class UtilisateurService {
         }
 
         return false;
+    }
+
+    public boolean isLibrarian(Utilisateur utilisateur) {
+        return utilisateurRepository.findByLogin(utilisateur.getLogin()).isBibliothequaire();
     }
 
 }

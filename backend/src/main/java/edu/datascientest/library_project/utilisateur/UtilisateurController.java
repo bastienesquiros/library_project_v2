@@ -2,6 +2,7 @@ package edu.datascientest.library_project.utilisateur;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,12 +19,23 @@ public class UtilisateurController {
     }
 
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/login")
-    public boolean login(@RequestBody @Valid LoginRequest loginRequest) {
-
+    public ResponseEntity<LoginResponse> login(@RequestBody @Valid LoginRequest loginRequest) {
         Utilisateur utilisateur = new Utilisateur(loginRequest.getLogin(), loginRequest.getMot_de_passe());
-        return utilisateurService.login(utilisateur.getLogin(), utilisateur.getMot_de_passe());
+
+        boolean isLibrarian = false;
+
+        boolean isLoginSuccessful = utilisateurService.login(utilisateur.getLogin(), utilisateur.getMot_de_passe());
+
+        if (isLoginSuccessful) {
+            isLibrarian = utilisateurService.isLibrarian(utilisateur);
+        }
+
+        LoginResponse response = new LoginResponse(isLoginSuccessful, isLibrarian);
+        return ResponseEntity.ok(response);
     }
+
 
     @PostMapping("/signup")
     public boolean signup(@RequestBody @Valid Utilisateur utilisateur) {
