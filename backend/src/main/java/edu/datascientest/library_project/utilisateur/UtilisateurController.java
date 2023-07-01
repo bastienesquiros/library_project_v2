@@ -19,9 +19,15 @@ public class UtilisateurController {
 
 
     @PostMapping("/login")
-    public boolean login(@RequestParam("mot_de_passe") String password, @RequestParam("login") String login) {
-        Utilisateur utilisateur = new Utilisateur(login, password);
+    public boolean login(@RequestBody @Valid LoginRequest loginRequest) {
+
+        Utilisateur utilisateur = new Utilisateur(loginRequest.getLogin(), loginRequest.getMot_de_passe());
         return utilisateurService.login(utilisateur.getLogin(), utilisateur.getMot_de_passe());
+    }
+
+    @PostMapping("/signup")
+    public boolean signup(@RequestBody @Valid Utilisateur utilisateur) {
+        return utilisateurService.signup(utilisateur);
     }
 
 

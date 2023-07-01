@@ -32,6 +32,7 @@ public class UtilisateurService {
 
     }
 
+
     public boolean login(String login, String password) {
         Utilisateur utilisateurInput = new Utilisateur(login, password);
         Utilisateur utilisateurToCompareWith = utilisateurRepository.findByLogin(login);
@@ -40,6 +41,19 @@ public class UtilisateurService {
             return false;
         }
 
-        return utilisateurInput.getLogin().equals(utilisateurToCompareWith.getLogin()) && utilisateurInput.getMot_de_passe().equals(utilisateurToCompareWith.getMot_de_passe());
+        return utilisateurInput.getLogin().equals(utilisateurToCompareWith.getLogin()) &&
+                utilisateurInput.getMot_de_passe().equals(utilisateurToCompareWith.getMot_de_passe());
     }
+
+    public boolean signup(Utilisateur utilisateur) {
+        Utilisateur utilisateurToCompareWith = utilisateurRepository.findByLogin(utilisateur.getLogin());
+
+        if (utilisateurToCompareWith == null) {
+            utilisateurRepository.save(utilisateur);
+            return true;
+        }
+
+        return false;
+    }
+
 }
