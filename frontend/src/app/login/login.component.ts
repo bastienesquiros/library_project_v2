@@ -15,7 +15,7 @@ export class LoginComponent {
   }
 
 
-  onSubmit() {
+  onSubmit(): void {
     const loginRequest = {
       login: this.username,
       mot_de_passe: this.password
@@ -24,7 +24,8 @@ export class LoginComponent {
       (response: any) => {
         console.log(response);
 
-        if (response == true) {
+
+        if (response.loginSuccessful == true) {
           console.log("REDIRECTION VERS LA PAGE D'ACCUEIL SELON LE ROLE ! (CHECK POUR LIBRAIRE OU PAS)");
         } else {
           console.log("Mauvais login ou mot de passe, INFORMER UTILISATEUR ");

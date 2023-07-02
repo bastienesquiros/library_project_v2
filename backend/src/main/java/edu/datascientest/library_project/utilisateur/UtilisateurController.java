@@ -36,7 +36,7 @@ public class UtilisateurController {
         return ResponseEntity.ok(response);
     }
 
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/signup")
     public boolean signup(@RequestBody @Valid Utilisateur utilisateur) {
         return utilisateurService.signup(utilisateur);
