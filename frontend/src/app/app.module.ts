@@ -7,12 +7,18 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {FormsModule} from "@angular/forms";
 import { SignupComponent } from './signup/signup.component';
+import { HomeComponent } from './home/home.component';
+import { SubscriberSideComponent } from './subscriber-side/subscriber-side.component';
+import { LibrarianSideComponent } from './librarian-side/librarian-side.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    HomeComponent,
+    SubscriberSideComponent,
+    LibrarianSideComponent
   ],
   imports: [
     BrowserModule,
