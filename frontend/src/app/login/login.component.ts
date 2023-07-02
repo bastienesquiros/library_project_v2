@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-component',
@@ -9,9 +10,10 @@ import {HttpClient} from "@angular/common/http";
 export class LoginComponent {
   username: string = '';
   password: string = '';
+  errorMessage: string = '';
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
 
@@ -22,15 +24,15 @@ export class LoginComponent {
     };
     this.http.post('http://localhost:8080/utilisateur/login', loginRequest).subscribe(
       (response: any) => {
-        console.log(response);
-
-
         if (response.loginSuccessful == true) {
-          console.log("REDIRECTION VERS LA PAGE D'ACCUEIL SELON LE ROLE ! (CHECK POUR LIBRAIRE OU PAS)");
+          if (response.librarian == true) {
+            this.router.navigate(['/librarianside']);
+          } else {
+            this.router.navigate(['/subscriberside']);
+          }
         } else {
-          console.log("Mauvais login ou mot de passe, INFORMER UTILISATEUR ");
+          this.errorMessage = 'Login ou mot de passe incorrect';
         }
-
       }
     );
   }

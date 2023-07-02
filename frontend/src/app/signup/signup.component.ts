@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signup',
@@ -15,9 +16,9 @@ export class SignupComponent {
   login: string = '';
   mot_de_passe: string = '';
   bibliothequaire: boolean = false;
+  errorMessage: string = '';
 
-
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   onSubmit(): void {
@@ -28,16 +29,25 @@ export class SignupComponent {
       login: this.login,
       mot_de_passe: this.mot_de_passe,
       bibliothequaire: this.bibliothequaire
+
     }
+
     this.http.post('http://localhost:8080/utilisateur/signup', signupRequest).subscribe(
       (response: any) => {
-        console.log(response);
 
-        if (response == true) {
-          console.log("REDIRECTION VERS LA PAGE D'ACCUEIL SELON LE ROLE ! (CHECK POUR LIBRAIRE OU PAS)");
+
+        if (response.loginSuccessful === true) {
+          // User authenticated successfully
+          if (response.librarian === true) {
+            this.router.navigate(['/librarianside']);
+          } else {
+            this.router.navigate(['/subscriberside']);
+          }
         } else {
-          console.log("utilisateur déjà existant ou bien erreur saisi, INFORMER UTILISATEUR ");
-        } // gérer autres cas erreurs, check la console chrome
+          // Authentication failed
+          this.errorMessage = "Vous êtes déjà inscrit";
+        }
+
 
       });
   }
