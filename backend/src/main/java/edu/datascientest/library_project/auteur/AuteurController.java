@@ -46,7 +46,7 @@ public class AuteurController {
 	}
 	
 	@GetMapping("auteur")
-	public Auteur getAuteurById(@RequestParam(name = "id") Integer id) {
+	public  Auteur getAuteurById(@RequestParam(name = "id") Integer id) {
 		return auteurservice.findById(id);
 	}
 

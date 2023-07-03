@@ -18,6 +18,10 @@ public class Auteur {
 	@Column(nullable = false)
 	private String nom;
 	
+	public Auteur() {
+		
+	}
+	
 	
 	public Auteur(Integer id, String nom) {
 		super();
