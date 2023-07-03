@@ -1,12 +1,10 @@
 package edu.datascientest.library_project.auteur;
 
+import java.util.List;
 import java.util.Objects;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import edu.datascientest.library_project.ouvrage.Ouvrage;
+import jakarta.persistence.*;
 
 @Entity
 public class Auteur {
@@ -17,12 +15,23 @@ public class Auteur {
 	private Integer id;
 	@Column(nullable = false)
 	private String nom;
+	@ManyToMany
+	@JoinTable(
+		name="ecrire",
+		joinColumns = @JoinColumn(name="id_auteur"),
+		inverseJoinColumns = @JoinColumn(name = "id_ouvrage")
+	)
+	private List<Ouvrage> ouvrages;
 	
 	
 	public Auteur(Integer id, String nom) {
 		super();
 		this.id = id;
 		this.nom = nom;
+	}
+
+	public Auteur() {
+
 	}
 
 

@@ -58,7 +58,7 @@ public class UtilisateurService {
     }
 
     public boolean isLibrarian(Utilisateur utilisateur) {
-        return utilisateurRepository.findByLogin(utilisateur.getLogin()).isBibliothequaire();
+        return utilisateurRepository.findByLogin(utilisateur.getLogin()).isBibliothecaire();
     }
 
 }

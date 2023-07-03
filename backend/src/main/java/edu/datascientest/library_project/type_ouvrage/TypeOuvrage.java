@@ -1,18 +1,35 @@
 package edu.datascientest.library_project.type_ouvrage;
 
+import edu.datascientest.library_project.ouvrage.Ouvrage;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(name="type_ouvrage")
 public class TypeOuvrage {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_type", nullable = false)
     private Integer id;
 
     @Column(nullable = false)
     private String type;
+    @OneToMany(mappedBy="typeOuvrage")
+    private List<Ouvrage> ouvrages;
+
+    public TypeOuvrage() {
+        this.ouvrages = new ArrayList<>();
+    }
+
+    public TypeOuvrage(Integer id, String type) {
+        this.id = id;
+        this.type = type;
+        this.ouvrages = new ArrayList<>();
+    }
 
     public Integer getId() {
         return id;
