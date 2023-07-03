@@ -34,6 +34,7 @@ public class Utilisateur {
     @Size(min = 5, max = 100, message = "Le prénom doit être compris entre 5 et 100 caractères")
     private String prenom;
 
+    @NotNull(message = "Le champ bibliothequaire ne peut pas être vide")
     @NotNull(message = "Le champ bibliothecaire ne peut pas être vide")
     private boolean bibliothecaire;
 
@@ -130,10 +131,6 @@ public class Utilisateur {
         return bibliothecaire;
     }
 
-    public void setBibliothecaire(boolean bibliothecaire) {
-        this.bibliothecaire = bibliothecaire;
-    }
-
     public Integer getId_utilisateur() {
         return id_utilisateur;
     }
@@ -141,4 +138,10 @@ public class Utilisateur {
     public void setId_utilisateur(Integer id_utilisateur) {
         this.id_utilisateur = id_utilisateur;
     }
+
+    public void setBibliothecaire(boolean bibliothecaire) {
+        this.bibliothecaire = bibliothecaire;
+    }
+
+
 }

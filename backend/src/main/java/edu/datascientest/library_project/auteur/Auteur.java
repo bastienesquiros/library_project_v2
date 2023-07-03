@@ -74,12 +74,18 @@ public class Auteur {
 	}
 
 
+	public Auteur(Integer id, String nom, List<Ouvrage> ouvrages) {
+		this.id = id;
+		this.nom = nom;
+		this.ouvrages = ouvrages;
+	}
+
 	@Override
 	public String toString() {
-		return "Auteur [id=" + id + ", nom=" + nom + "]";
+		return "Auteur{" +
+				"id=" + id +
+				", nom='" + nom + '\'' +
+				", ouvrages=" + ouvrages +
+				'}';
 	}
-	
-	
-	
-	
 }

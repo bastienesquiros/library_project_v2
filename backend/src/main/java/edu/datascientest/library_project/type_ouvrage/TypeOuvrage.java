@@ -60,11 +60,18 @@ public class TypeOuvrage {
         return Objects.hash(getId(), getType());
     }
 
+    public TypeOuvrage(Integer id, String type, List<Ouvrage> ouvrages) {
+        this.id = id;
+        this.type = type;
+        this.ouvrages = ouvrages;
+    }
+
     @Override
     public String toString() {
         return "TypeOuvrage{" +
                 "id=" + id +
                 ", type='" + type + '\'' +
+                ", ouvrages=" + ouvrages +
                 '}';
     }
 }
