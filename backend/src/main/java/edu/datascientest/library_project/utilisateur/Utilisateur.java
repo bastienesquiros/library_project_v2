@@ -34,16 +34,16 @@ public class Utilisateur {
     @Size(min = 5, max = 100, message = "Le prénom doit être compris entre 5 et 100 caractères")
     private String prenom;
 
-    @NotNull(message = "Le champ bibliothequaire ne peut pas être vide")
-    private boolean bibliothequaire;
+    @NotNull(message = "Le champ bibliothecaire ne peut pas être vide")
+    private boolean bibliothecaire;
 
-    public Utilisateur(String nom, String adresse, String login, String mot_de_passe, String prenom, boolean bibliothequaire) {
+    public Utilisateur(String nom, String adresse, String login, String mot_de_passe, String prenom, boolean bibliothecaire) {
         this.nom = nom;
         this.adresse = adresse;
         this.login = login;
         this.mot_de_passe = mot_de_passe;
         this.prenom = prenom;
-        this.bibliothequaire = bibliothequaire;
+        this.bibliothecaire = bibliothecaire;
     }
 
     public Utilisateur(Integer id_utilisateur, String nom) {
@@ -69,7 +69,7 @@ public class Utilisateur {
                 ", login='" + login + '\'' +
                 ", mot_de_passe='" + mot_de_passe + '\'' +
                 ", prenom='" + prenom + '\'' +
-                ", bibliothequaire=" + bibliothequaire +
+                ", bibliothequaire=" + bibliothecaire +
                 '}';
     }
 
@@ -78,12 +78,12 @@ public class Utilisateur {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Utilisateur that = (Utilisateur) o;
-        return bibliothequaire == that.bibliothequaire && Objects.equals(id_utilisateur, that.id_utilisateur) && Objects.equals(nom, that.nom) && Objects.equals(adresse, that.adresse) && Objects.equals(login, that.login) && Objects.equals(mot_de_passe, that.mot_de_passe) && Objects.equals(prenom, that.prenom);
+        return bibliothecaire == that.bibliothecaire && Objects.equals(id_utilisateur, that.id_utilisateur) && Objects.equals(nom, that.nom) && Objects.equals(adresse, that.adresse) && Objects.equals(login, that.login) && Objects.equals(mot_de_passe, that.mot_de_passe) && Objects.equals(prenom, that.prenom);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id_utilisateur, nom, adresse, login, mot_de_passe, prenom, bibliothequaire);
+        return Objects.hash(id_utilisateur, nom, adresse, login, mot_de_passe, prenom, bibliothecaire);
     }
 
     public String getNom() {
@@ -126,12 +126,12 @@ public class Utilisateur {
         this.prenom = prenom;
     }
 
-    public boolean isBibliothequaire() {
-        return bibliothequaire;
+    public boolean isBibliothecaire() {
+        return bibliothecaire;
     }
 
-    public void setBibliothequaire(boolean bibliothequaire) {
-        this.bibliothequaire = bibliothequaire;
+    public void setBibliothecaire(boolean bibliothequaire) {
+        this.bibliothecaire = bibliothequaire;
     }
 
     public Integer getId_utilisateur() {
