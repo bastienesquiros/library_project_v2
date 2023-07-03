@@ -31,6 +31,7 @@ public class Abonne {
 
     }
 
+
     public Abonne(Integer id_abonne, Integer nb_infraction, Date date_debut_penalite, Date date_fin_penalite, Integer id_utilisateur) {
         this.id_abonne = id_abonne;
         this.nb_infraction = nb_infraction;
@@ -50,7 +51,7 @@ public class Abonne {
                 ", ouvrages=" + ouvrages +
                 '}';
     }
-    
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
