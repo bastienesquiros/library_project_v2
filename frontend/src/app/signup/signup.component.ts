@@ -15,7 +15,7 @@ export class SignupComponent {
   adresse: string = '';
   login: string = '';
   mot_de_passe: string = '';
-  bibliothequaire: boolean = false;
+  bibliothecaire: boolean = false;
   errorMessage: string = '';
 
   constructor(private http: HttpClient, private router: Router) {
@@ -28,7 +28,7 @@ export class SignupComponent {
       adresse: this.adresse,
       login: this.login,
       mot_de_passe: this.mot_de_passe,
-      bibliothequaire: this.bibliothequaire
+      bibliothecaire: this.bibliothecaire
 
     }
 
