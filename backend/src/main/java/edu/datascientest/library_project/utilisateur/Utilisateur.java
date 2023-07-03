@@ -69,7 +69,7 @@ public class Utilisateur {
                 ", login='" + login + '\'' +
                 ", mot_de_passe='" + mot_de_passe + '\'' +
                 ", prenom='" + prenom + '\'' +
-                ", bibliothequaire=" + bibliothecaire +
+                ", bibliothecaire=" + bibliothecaire +
                 '}';
     }
 
@@ -130,8 +130,8 @@ public class Utilisateur {
         return bibliothecaire;
     }
 
-    public void setBibliothecaire(boolean bibliothequaire) {
-        this.bibliothecaire = bibliothequaire;
+    public void setBibliothecaire(boolean bibliothecaire) {
+        this.bibliothecaire = bibliothecaire;
     }
 
     public Integer getId_utilisateur() {
