@@ -1,5 +1,7 @@
 package edu.datascientest.library_project.ouvrage;
 
+import edu.datascientest.library_project.auteur.Auteur;
+import edu.datascientest.library_project.auteur.AuteurService;
 import edu.datascientest.library_project.type_ouvrage.TypeOuvrage;
 import edu.datascientest.library_project.type_ouvrage.TypeOuvrageRepository;
 import edu.datascientest.library_project.type_ouvrage.TypeOuvrageService;
@@ -16,28 +18,39 @@ class OuvrageServiceTest {
 
     OuvrageService ouvrageService;
     TypeOuvrageService typeOuvrageService;
-    @Autowired
-    private TypeOuvrageRepository typeOuvrageRepository;
+    AuteurService auteurService;
 
     @Autowired
-    public OuvrageServiceTest(OuvrageService ouvrageService, TypeOuvrageService typeOuvrageService) {
+    public OuvrageServiceTest(OuvrageService ouvrageService, TypeOuvrageService typeOuvrageService, AuteurService auteurService) {
         this.ouvrageService = ouvrageService;
         this.typeOuvrageService = typeOuvrageService;
+        this.auteurService = auteurService;
     }
-
 
     @Test
     void save() {
         TypeOuvrage typeOuvrage = new TypeOuvrage(88, "essaie");
         typeOuvrageService.save(typeOuvrage);
-        Ouvrage ouvrage = new Ouvrage(99, "nine", "P", typeOuvrage);
+
+        Auteur auteur1 = new Auteur(77, "Crichton");
+        auteurService.save(auteur1);
+        Auteur auteur2 = new Auteur(78, "Michael");
+        auteurService.save(auteur2);
+
+        System.out.println("------------***------------");
+
+
+        Ouvrage ouvrage = new Ouvrage("Jurassic Park 2030", typeOuvrage, auteur1, auteur2);
+        System.out.println("ouvrage = " + ouvrage);
         ouvrageService.save(ouvrage);
 
 
         System.out.println("---------------------------");
 
-        Ouvrage foundOuvrage = ouvrageService.findById(99);
+
+
+        Ouvrage foundOuvrage = ouvrageService.findById(ouvrage.getId_ouvrage());
         System.out.println("foundOuvrage = " + foundOuvrage);
-        Assertions.assertThat(foundOuvrage.getId_ouvrage()).isEqualTo(99);
+        Assertions.assertThat(foundOuvrage.getId_ouvrage()).isEqualTo(ouvrage.getId_ouvrage());
     }
 }
