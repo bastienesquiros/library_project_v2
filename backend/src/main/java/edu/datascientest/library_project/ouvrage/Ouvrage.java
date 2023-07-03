@@ -1,9 +1,12 @@
 package edu.datascientest.library_project.ouvrage;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 import edu.datascientest.library_project.auteur.Auteur;
+import edu.datascientest.library_project.exemplaire.Exemplaire;
 import edu.datascientest.library_project.type_ouvrage.TypeOuvrage;
 import jakarta.persistence.*;
 
@@ -16,10 +19,9 @@ public class Ouvrage {
 	private Integer id_ouvrage;
 	private String titre;
 	private String auteur;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne //(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_type")
 	private TypeOuvrage typeOuvrage;
-
 	@ManyToMany
 	@JoinTable(
 			name="ecrire",
@@ -28,15 +30,18 @@ public class Ouvrage {
 	)
 	private List<Auteur> auteurs;
 
+	@OneToMany(mappedBy="ouvrage")
+	private List<Exemplaire> exemplaires;
+
 	public Ouvrage() {
 
 	}
 
-	public Ouvrage(Integer id_ouvrage, String titre, String auteur, TypeOuvrage typeOuvrage) {
-		this.id_ouvrage = id_ouvrage;
+	public Ouvrage(String titre, TypeOuvrage typeOuvrage, Auteur... auteurs) {
 		this.titre = titre;
-		this.auteur = auteur;
 		this.typeOuvrage = typeOuvrage;
+		if(this.auteurs == null) this.auteurs = new ArrayList<Auteur>();
+		this.auteurs.addAll(Arrays.stream(auteurs).toList());
 	}
 
 	public Integer getId_ouvrage() {
@@ -88,6 +93,7 @@ public class Ouvrage {
 				", titre='" + titre + '\'' +
 				", auteur='" + auteur + '\'' +
 				", typeOuvrage=" + typeOuvrage +
+				", auteurs=" + auteurs +
 				'}';
 	}
 }

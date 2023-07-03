@@ -41,7 +41,7 @@ public class UtilisateurService {
             return false;
         }
 
-        
+
         return utilisateurInput.getLogin().equals(utilisateurToCompareWith.getLogin()) &&
                 utilisateurInput.getMot_de_passe().equals(utilisateurToCompareWith.getMot_de_passe());
     }

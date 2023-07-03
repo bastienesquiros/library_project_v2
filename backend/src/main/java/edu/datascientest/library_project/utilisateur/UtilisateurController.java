@@ -42,9 +42,8 @@ public class UtilisateurController {
         return utilisateurService.signup(utilisateur);
     }
 
-
     @GetMapping
-    public List<Utilisateur> getUtilisateurs(Integer id) {
+    public List<Utilisateur> getUtilisateurs() {
         return utilisateurService.getUtilisateurs();
     }
 
