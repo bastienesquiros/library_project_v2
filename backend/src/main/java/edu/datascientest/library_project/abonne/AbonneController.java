@@ -18,7 +18,7 @@ public class AbonneController {
     }
 
 
-    @GetMapping("{id}")
+    @GetMapping("{id}") //http://localhost:8080/abonne/2
     public Abonne getAbonne(@PathVariable("id") Integer id) {
         return abonneService.getAbonne(id);
     }

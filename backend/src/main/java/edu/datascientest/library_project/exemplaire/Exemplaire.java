@@ -2,8 +2,11 @@ package edu.datascientest.library_project.exemplaire;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import edu.datascientest.library_project.emprunt.Emprunt;
 import edu.datascientest.library_project.ouvrage.Ouvrage;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Exemplaire {
@@ -17,6 +20,18 @@ public class Exemplaire {
     @JoinColumn(name="id_ouvrage")
     @JsonBackReference
     private Ouvrage ouvrage;
+    @OneToMany(mappedBy="exemplaire")
+    private List<Emprunt> emprunts;
+
+    public Exemplaire() {
+    }
+
+    public Exemplaire(Integer id_exemplaire, Etat etat, Ouvrage ouvrage, List<Emprunt> emprunts) {
+        this.id_exemplaire = id_exemplaire;
+        this.etat = etat;
+        this.ouvrage = ouvrage;
+        this.emprunts = emprunts;
+    }
 
     public Integer getId_exemplaire() {
         return id_exemplaire;
@@ -42,13 +57,11 @@ public class Exemplaire {
         this.ouvrage = ouvrage;
     }
 
-    @Override
-    public String toString() {
-        return "Exemplaire{" +
-                "id_exemplaire=" + id_exemplaire +
-                ", etat='" + etat + '\'' +
-                ", ouvrage=" + ouvrage +
-                '}';
+    public List<Emprunt> getEmprunts() {
+        return emprunts;
     }
 
+    public void setEmprunts(List<Emprunt> emprunts) {
+        this.emprunts = emprunts;
+    }
 }

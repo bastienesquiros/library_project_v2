@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -15,7 +16,7 @@ public class EmpruntController {
 
     @PostMapping
     public void addEmprunt(@RequestBody @Valid Emprunt emprunt) {
-        System.out.println(emprunt.getId_abonne() + "TESST");
+        //System.out.println(emprunt.getId_abonne() + "TESST");
         empruntService.addEmprunt(emprunt);
     }
 
@@ -30,13 +31,18 @@ public class EmpruntController {
     }
 
     @GetMapping("{id}")
-    public Emprunt getEmprunt(@PathVariable("id") Integer id) {
-        return empruntService.getEmprunt(id);
+    public EmpruntDto getEmprunt(@PathVariable("id") Integer id) {
+        return EmpruntDto.convertToDto(empruntService.getEmprunt(id));
     }
 
     @GetMapping
-    public List<Emprunt> getEmprunts() {
-        return empruntService.getEmprunts();
+    public List<EmpruntDto> getEmprunts() {
+        List<Emprunt> listEmprunt = empruntService.getEmprunts();
+        List<EmpruntDto> listDto = new ArrayList<>();
+        for(Emprunt e : listEmprunt){
+            listDto.add(EmpruntDto.convertToDto(e));
+        }
+        return listDto;
     }
 
 
