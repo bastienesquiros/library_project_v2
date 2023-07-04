@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,28 +26,33 @@ public class BibliothecaireController {
 	@Autowired
 	OuvrageService ouvrageService;
 	
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping
 	public List<Ouvrage> getOuvrage(){
 		return ouvrageService.findAll();
 	}
 	
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("ouvrage")
 	public Ouvrage findById(@RequestParam(name = "id_ouvrage") Integer id_ouvrage) {
 		return ouvrageService.findById(id_ouvrage);
 	}
 	
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public void postOuvrage(@RequestBody Ouvrage ouvrage) {
 		ouvrageService.save(ouvrage);
 	}
 	
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PutMapping
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void updateClient(@RequestBody Ouvrage request) {
 		ouvrageService.update(request);
 	}
 	
+	@CrossOrigin(origins = "http://localhost:4200")
 	@DeleteMapping("{id_ouvrage}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteOuvrage(@PathVariable("id_ouvrage") Integer id_ouvrage) {

@@ -48,6 +48,7 @@ public class UtilisateurController {
         return utilisateurService.getUtilisateurs();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("{id}")
     public Utilisateur getUtilisateur(@PathVariable("id") Integer id) {
         return utilisateurService.getUtilisateur(id);
@@ -58,6 +59,7 @@ public class UtilisateurController {
         utilisateurService.updateUtilisateur(utilisateur);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("{id}")
     public void deleteUtilisateur(@PathVariable("id") Integer id) {
         utilisateurService.deleteUtilisateur(id);
