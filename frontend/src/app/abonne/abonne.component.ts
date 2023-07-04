@@ -21,6 +21,10 @@ interface Abonne {
 export class AbonneComponent implements OnInit {
   public abonnes: Abonne[] = [];
 
+  searchText: string = '';
+  filteredAbonnes: any[] = [];
+
+
   constructor(private http: HttpClient) {
   }
 
@@ -32,7 +36,23 @@ export class AbonneComponent implements OnInit {
     this.http.get<Abonne[]>('http://localhost:8080/abonne').subscribe(
       (response: Abonne[]) => {
         this.abonnes = response;
+        this.filterAbonnes()
       }
     );
   }
+
+
+  filterAbonnes() {
+    if (this.searchText.trim() === '') {
+      // If search text is empty, show all abonnes
+      this.filteredAbonnes = this.abonnes;
+    } else {
+      // Filter abonnes based on search text
+      this.filteredAbonnes = this.abonnes.filter(abonne =>
+        abonne.id_utilisateur.toString().includes(this.searchText.trim()) ||
+        abonne.id_abonne.toString().includes(this.searchText.trim())
+      );
+    }
+  }
+
 }
