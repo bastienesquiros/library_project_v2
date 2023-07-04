@@ -1,4 +1,33 @@
-<p>user works!</p>
+<form (ngSubmit)="PostUser()" class="mb-4">
+
+    <div class="container">
+        <div class="form-group">
+            <h1 class="text-center">Ajout d'un utilisateur</h1>
+            <input [(ngModel)]="nom" class="form-control" name="nom" placeholder="nom" type="text">
+        </div>
+        <div class="form-group">
+            <input [(ngModel)]="prenom" class="form-control" name="prenom" placeholder="prenom" type="text">
+        </div>
+        <div class="form-group">
+            <input [(ngModel)]="adresse" class="form-control" name="adresse" placeholder="adresse" type="text">
+        </div>
+        <div class="form-group">
+            <input [(ngModel)]="login" class="form-control" name="login" placeholder="login" type="text">
+        </div>
+        <div class="form-group">
+            <input [(ngModel)]="mot_de_passe" class="form-control" name="mot_de_passe" placeholder="mot_de_passe" type="text">
+        </div>
+        <div class="form-group">
+            <input [(ngModel)]="bibliothecaire" class="form-control" id="bool1" name="bool1" type="radio" value="true">
+            <label for="bool1">Oui</label>
+
+            <input [(ngModel)]="bibliothecaire" class="form-control" id="bool0" name="bool0" type="radio" value="false" />
+            <label for="bool0">Non</label>
+        </div>
+        <button class="btn btn-primary" type="submit">Valider</button>
+    </div>
+</form>
+
 <form (ngSubmit)="GetUserById()" class="mb-4">
 
     <div class="container">
@@ -6,6 +35,40 @@
             <h1 class="text-center">recherche d'un utilisateur
             </h1>
             <input [(ngModel)]="id_user" class="form-control" name="id_user" placeholder="id" type="number">
+        </div>
+        <button class="btn btn-primary" type="submit">Valider</button>
+        <h2> {{ thisUser }}</h2>
+    </div>
+</form>
+
+<form (ngSubmit)="UpdateUser()" class="mb-4">
+
+    <div class="container">
+        <div class="form-group">
+            <h1 class="text-center">Modification d'un utilisateur</h1>
+            <input [(ngModel)]="id_user_to_update" class="form-control" name="id_user_to_update" placeholder="id_user" type="number">
+        </div>
+        <div class="form-group">
+            <input [(ngModel)]="nomToUpdate" class="form-control" name="nomToUpdate" placeholder="nom" type="text">
+        </div>
+        <div class="form-group">
+            <input [(ngModel)]="prenomToUpdate" class="form-control" name="prenomToUpdate" placeholder="prenom" type="text">
+        </div>
+        <div class="form-group">
+            <input [(ngModel)]="adresseToUpdate" class="form-control" name="adresseToUpdate" placeholder="adresse" type="text">
+        </div>
+        <div class="form-group">
+            <input [(ngModel)]="loginToUpdate" class="form-control" name="loginToUpdate" placeholder="login" type="text">
+        </div>
+        <div class="form-group">
+            <input [(ngModel)]="mot_de_passeToUpdate" class="form-control" name="mot_de_passeToUpdate" placeholder="mot_de_passe" type="text">
+        </div>
+        <div class="form-group">
+            <input [(ngModel)]="bibliothecaireToUpdate" class="form-control" id="bool1U" name="bool1U" type="radio" value="true">
+            <label for="bool1U">Oui</label>
+
+            <input [(ngModel)]="bibliothecaireToUpdate" class="form-control" id="bool0U" name="bool0U" U type="radio" value="false" />
+            <label for="bool0U">Non</label>
         </div>
         <button class="btn btn-primary" type="submit">Valider</button>
     </div>
@@ -17,8 +80,19 @@
         <div class="form-group">
             <h1 class="text-center">suppression d'un utilisateur
             </h1>
-            <input [(ngModel)]="id_user" class="form-control" name="id_user_delete" placeholder="id" type="number">
+            <input [(ngModel)]="id_user_delete" class="form-control" name="id_user_delete" type="number">
         </div>
         <button class="btn btn-primary" type="submit">Valider</button>
+    </div>
+</form>
+
+<form (ngSubmit)="GetUsers()" class="mb-4">
+
+    <div class="container">
+        <div class="form-group">
+            <h1 class="text-center">tout les utilisateurs</h1>
+            <button class="btn btn-primary" type="submit">Valider</button>
+        </div>
+        <p> {{ usersIdT }} </p>
     </div>
 </form>

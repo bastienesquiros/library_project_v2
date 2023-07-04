@@ -57,6 +57,14 @@ public class Auteur {
 	}
 
 
+	public List<Ouvrage> getOuvrages() {
+		return ouvrages;
+	}
+
+	public void setOuvrages(List<Ouvrage> ouvrages) {
+		this.ouvrages = ouvrages;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, nom);
