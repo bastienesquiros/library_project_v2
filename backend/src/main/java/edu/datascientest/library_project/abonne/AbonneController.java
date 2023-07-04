@@ -25,21 +25,25 @@ public class AbonneController {
         return abonneService.getAbonne(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/{idAbonne}/reserver/{idOuvrage}")
     public void reserveOuvrage(@PathVariable Integer idAbonne, @PathVariable Integer idOuvrage) {
         abonneService.reserveOuvrage(idAbonne, idOuvrage);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("{id}")
     public void deleteAbonne(@PathVariable("id") Integer id) {
         abonneService.deleteAbonne(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping
     public void updateAbonne(@RequestBody Abonne abonne) {
         abonneService.updateAbonne(abonne);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
     public void addAbonne(@Valid @RequestBody Abonne abonne) {
         abonneService.addAbonne(abonne);
