@@ -12,8 +12,10 @@ public class AbonneController {
     @Autowired
     private AbonneService abonneService;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping
     public List<Abonne> getAbonnes() {
+
         return abonneService.getAbonnes();
     }
 

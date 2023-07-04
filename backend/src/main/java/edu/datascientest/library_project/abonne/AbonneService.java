@@ -4,7 +4,6 @@ import edu.datascientest.library_project.ouvrage.Ouvrage;
 import edu.datascientest.library_project.ouvrage.OuvrageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -37,7 +36,7 @@ public class AbonneService {
         return abonneRepository.findAll();
     }
 
-    public void reserveOuvrage(@PathVariable Integer idAbonne, @PathVariable Integer idOuvrage) {
+    public void reserveOuvrage(Integer idAbonne, Integer idOuvrage) {
         Abonne abonne = abonneRepository.findById(idAbonne).get();
         Ouvrage ouvrage = ouvrageRepository.findById(idOuvrage).get();
 
