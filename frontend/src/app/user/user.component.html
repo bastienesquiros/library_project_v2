@@ -1,0 +1,24 @@
+<p>user works!</p>
+<form (ngSubmit)="GetUserById()" class="mb-4">
+
+    <div class="container">
+        <div class="form-group">
+            <h1 class="text-center">recherche d'un utilisateur
+            </h1>
+            <input [(ngModel)]="id_user" class="form-control" name="id_user" placeholder="id" type="number">
+        </div>
+        <button class="btn btn-primary" type="submit">Valider</button>
+    </div>
+</form>
+
+<form (ngSubmit)="DeleteUserById()" class="mb-4">
+
+    <div class="container">
+        <div class="form-group">
+            <h1 class="text-center">suppression d'un utilisateur
+            </h1>
+            <input [(ngModel)]="id_user" class="form-control" name="id_user_delete" placeholder="id" type="number">
+        </div>
+        <button class="btn btn-primary" type="submit">Valider</button>
+    </div>
+</form>

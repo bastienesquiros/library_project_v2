@@ -10,6 +10,8 @@ import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { SubscriberSideComponent } from './subscriber-side/subscriber-side.component';
 import { LibrarianSideComponent } from './librarian-side/librarian-side.component';
+import { BookComponent } from './book/book.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { LibrarianSideComponent } from './librarian-side/librarian-side.componen
     SignupComponent,
     HomeComponent,
     SubscriberSideComponent,
-    LibrarianSideComponent
+    LibrarianSideComponent,
+    BookComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
