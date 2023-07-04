@@ -1,5 +1,38 @@
-<ul>
-  <li *ngFor="let abonne of abonnes">
-    {{ abonne.id_abonne }} - {{ abonne.id_utilisateur }}
-  </li>
-</ul>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">id_utilisateur</th>
+    <th scope="col">id_abonne</th>
+    <th scope="col">date_début_pénalité</th>
+    <th scope="col">date_fin_pénalité</th>
+    <th scope="col">nb_infractions</th>
+    <th scope="col">actions</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let abonne of abonnes">
+    <td>{{ abonne.id_utilisateur }}</td>
+    <td>{{ abonne.id_utilisateur }}</td>
+    <td>{{ abonne.id_utilisateur }}</td>
+    <td>{{ abonne.id_utilisateur }}</td>
+    <td>{{ abonne.id_utilisateur }}</td>
+    <td>
+      <button class="btn btn-primary btn-sm">Edit</button>
+      <button class="btn btn-danger btn-sm">Delete</button>
+    </td>
+  </tr>
+  <tr>
+    <th scope="row">2</th>
+    <td>Jacob</td>
+    <td>Thornton</td>
+    <td>@fat</td>
+  </tr>
+  <tr>
+    <th scope="row">3</th>
+    <td>Larry</td>
+    <td>the Bird</td>
+    <td>@twitter</td>
+  </tr>
+  </tbody>
+</table>

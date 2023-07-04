@@ -13,6 +13,7 @@ public class UtilisateurController {
     @Autowired
     private UtilisateurService utilisateurService;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
     public void addUtilisateur(@Valid @RequestBody Utilisateur utilisateur) {
         utilisateurService.addUtilisateur(utilisateur);
@@ -41,7 +42,8 @@ public class UtilisateurController {
     public boolean signup(@RequestBody @Valid Utilisateur utilisateur) {
         return utilisateurService.signup(utilisateur);
     }
-
+    
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping
     public List<Utilisateur> getUtilisateurs() {
         return utilisateurService.getUtilisateurs();
@@ -53,6 +55,7 @@ public class UtilisateurController {
         return utilisateurService.getUtilisateur(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping
     public void updateUtilisateur(@RequestBody Utilisateur utilisateur) {
         utilisateurService.updateUtilisateur(utilisateur);
