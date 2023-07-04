@@ -3,6 +3,7 @@ package edu.datascientest.library_project.ouvrage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,14 +17,21 @@ public class OuvrageController {
     }
 
     @GetMapping
-    public List<Ouvrage> getListOuvrage(){
-        return service.findAll();
+    public List<OuvrageDto> getListOuvrageDto(){
+        List<Ouvrage> listOuvrage = service.findAll();
+        List<OuvrageDto> listDto = new ArrayList<>();
+        for(Ouvrage o : listOuvrage){
+            listDto.add(OuvrageConverter.convertToDto(o));
+        }
+        return listDto;
     }
 
     //find by id
     @GetMapping("/findById")
-    public Ouvrage findOuvrageById(Integer id){
-        return service.findById(id);
+    public OuvrageDto findOuvrageById(Integer id){
+        Ouvrage ouvrage = service.findById(id);
+        OuvrageDto dto = OuvrageConverter.convertToDto(ouvrage);
+        return dto;
     }
 
     //creer

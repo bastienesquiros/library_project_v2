@@ -13,7 +13,7 @@ public class Exemplaire {
     private Integer id_exemplaire;
     @Enumerated(EnumType.STRING)
     private Etat etat;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity= Ouvrage.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="id_ouvrage")
     @JsonBackReference
     private Ouvrage ouvrage;

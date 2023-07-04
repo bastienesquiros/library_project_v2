@@ -1,5 +1,6 @@
 package edu.datascientest.library_project.auteur;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import edu.datascientest.library_project.ouvrage.Ouvrage;
 import jakarta.persistence.*;
@@ -16,13 +17,13 @@ public class Auteur {
     private Integer id;
     @Column(nullable = false)
     private String nom;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "ecrire",
             joinColumns = @JoinColumn(name = "id_auteur"),
             inverseJoinColumns = @JoinColumn(name = "id_ouvrage")
     )
-    @JsonIgnoreProperties
+    @JsonIgnoreProperties @JsonIgnore
     private List<Ouvrage> ouvrages;
 
     public Auteur(Integer id, String nom) {

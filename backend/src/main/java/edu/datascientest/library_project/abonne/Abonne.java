@@ -1,5 +1,6 @@
 package edu.datascientest.library_project.abonne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import edu.datascientest.library_project.ouvrage.Ouvrage;
 import jakarta.persistence.*;
 
@@ -20,7 +21,8 @@ public class Abonne {
 
     private Integer id_utilisateur;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinTable(
             name = "reserve",
             joinColumns = @JoinColumn(name = "id_abonne"),
