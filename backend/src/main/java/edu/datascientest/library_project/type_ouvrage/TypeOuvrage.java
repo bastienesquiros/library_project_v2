@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="type_ouvrage")
 public class TypeOuvrage {
@@ -19,6 +21,7 @@ public class TypeOuvrage {
     @Column(nullable = false)
     private String type;
     @OneToMany(mappedBy="typeOuvrage")
+    @JsonManagedReference(value="ouvrage-typeouvrage")
     private List<Ouvrage> ouvrages;
 
     public TypeOuvrage() {
