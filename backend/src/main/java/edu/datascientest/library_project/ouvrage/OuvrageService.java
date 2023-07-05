@@ -25,8 +25,12 @@ public class OuvrageService {
 	public List<Ouvrage> findAll() {
 		return ouvrageRepository.findAll();
 	}
-	
+
 	public Ouvrage findById(Integer id_ouvrage) {
 		return ouvrageRepository.findById(id_ouvrage).get();
+	}
+
+	public Ouvrage findByTitre(String titre) {
+		return ouvrageRepository.findByTitre(titre);
 	}
 }

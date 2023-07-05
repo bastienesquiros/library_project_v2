@@ -56,4 +56,9 @@ public class AuteurService {
             auteurrepository.save(auteur);
         }
     }
+
+    public Auteur findByNom(String nom) {
+        return auteurrepository.findByNom(nom);
+
+    }
 }
