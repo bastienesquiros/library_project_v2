@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -14,8 +15,13 @@ public class AuteurController {
     AuteurService auteurservice;
 
     @GetMapping
-    public List<Auteur> getAuteurs() {
-        return auteurservice.findAll();
+    public List<AuteurDto> getAuteurs() {
+        List<Auteur> auteurs = auteurservice.findAll();
+        List<AuteurDto> auteurDtos = new ArrayList<>();
+        for(Auteur a : auteurs){
+            auteurDtos.add(AuteurDto.convertToDto(a));
+        }
+        return auteurDtos;
     }
 
 
@@ -36,13 +42,20 @@ public class AuteurController {
     }
 
     @GetMapping("auteur")
-    public Auteur getAuteurById(@RequestParam(name = "id") Integer id) {
-        return auteurservice.findById(id);
+    public AuteurDto getAuteurById(@RequestParam(name = "id") Integer id) {
+        return AuteurDto.convertToDto(auteurservice.findById(id));
     }
 
     @PostMapping("{id_auteur}/ecrit/{id_ouvrage}")
     public void ecrit(@PathVariable("id_auteur") Integer id_auteur, @PathVariable("id_ouvrage") Integer id_ouvrage) {
         auteurservice.ecrit(id_auteur, id_ouvrage);
+    }
+
+    //find by nom d'auteur
+    @GetMapping("auteur_nom")
+    public AuteurDto getAuteurByNom(@RequestParam(name="nom") String nom){
+        Auteur auteur = auteurservice.findByNom(nom);
+        return AuteurDto.convertToDto(auteur);
     }
 
 }

@@ -21,7 +21,7 @@ public class OuvrageController {
         List<Ouvrage> listOuvrage = service.findAll();
         List<OuvrageDto> listDto = new ArrayList<>();
         for(Ouvrage o : listOuvrage){
-            listDto.add(OuvrageConverter.convertToDto(o));
+            listDto.add(OuvrageDto.convertToDto(o));
         }
         return listDto;
     }
@@ -30,8 +30,15 @@ public class OuvrageController {
     @GetMapping("/findById")
     public OuvrageDto findOuvrageById(Integer id){
         Ouvrage ouvrage = service.findById(id);
-        OuvrageDto dto = OuvrageConverter.convertToDto(ouvrage);
+        OuvrageDto dto = OuvrageDto.convertToDto(ouvrage);
         return dto;
+    }
+
+    //find by titre
+    @GetMapping("/findByTitre")
+    public OuvrageDto findOuvrageByTitre(@RequestParam(name="titre") String titre){
+        Ouvrage ouvrage = service.findByTitre(titre);
+        return OuvrageDto.convertToDto(ouvrage);
     }
 
     //creer

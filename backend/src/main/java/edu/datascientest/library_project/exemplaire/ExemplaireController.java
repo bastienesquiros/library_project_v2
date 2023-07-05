@@ -25,29 +25,20 @@ public class ExemplaireController {
 
     //list Exemplaire
     @GetMapping
-    public List<Exemplaire> getExemplaires() {
-        return service.findAll();
+    public List<ExemplaireDto> getExemplaires() {
+        List<Exemplaire> listExemplaire = service.findAll();
+        List<ExemplaireDto> listDto = new ArrayList<>();
+        for(Exemplaire e : listExemplaire){
+            listDto.add(ExemplaireDto.convertToDto(e));
+        }
+        return listDto;
     }
 
-//    @GetMapping
-//    public List<ExemplaireDto> getExemplaires() {
-//        List<ExemplaireDto> listDto = new ArrayList<>();
-//        List<Exemplaire> all = service.findAll();
-//        for(Exemplaire ex : all){
-//            ExemplaireDto dto = new ExemplaireDto();
-//            dto.setId_exemplaire(ex.getId_exemplaire());
-//            dto.setEtat(ex.getEtat());
-//            Ouvrage ouvrage = ouvrageService.findById(ex.getId_exemplaire());
-//            dto.setNomOuvrage(ouvrage.getTitre());
-//        }
-//        System.out.println(listDto);
-//        return listDto;
-//    }
 
     //Find by id
     @GetMapping("/findById")
-    public Exemplaire findExemplaireById(@RequestParam("id") Integer id){
-        return service.findById(id);
+    public ExemplaireDto findExemplaireById(@RequestParam("id") Integer id){
+        return ExemplaireDto.convertToDto(service.findById(id));
     }
 
     //créer
