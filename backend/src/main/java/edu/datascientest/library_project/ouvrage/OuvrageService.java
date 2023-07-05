@@ -2,6 +2,7 @@ package edu.datascientest.library_project.ouvrage;
 
 import java.util.List;
 
+import edu.datascientest.library_project.auteur.Auteur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,8 @@ public class OuvrageService {
 	OuvrageRepository ouvrageRepository;
 	
 	public void save(Ouvrage ouvrage) {
+		List<Auteur> auteurs = ouvrage.getAuteurs();
+		System.out.println("A U T E U R S : "+auteurs);
 		ouvrageRepository.save(ouvrage);
 	}
 	
