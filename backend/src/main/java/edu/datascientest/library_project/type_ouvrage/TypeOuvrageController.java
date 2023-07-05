@@ -44,7 +44,7 @@ public class TypeOuvrageController {
 
 
     //modifier
-    @PostMapping("/update")
+    @PutMapping("/update")
     public void updateClient(@RequestBody TypeOuvrage typeOuvrage){
         service.save(typeOuvrage);
     }

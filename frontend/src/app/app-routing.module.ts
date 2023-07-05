@@ -6,7 +6,7 @@ import {SubscriberSideComponent} from "./subscriber-side/subscriber-side.compone
 import {BookComponent} from "./book/book.component";
 import {UserComponent} from "./user/user.component";
 import {AbonneComponent} from "./abonne/abonne.component";
-import {TypeBookComponent} from "./type-book/type-book.component";
+import {TypeBookComponent } from "./type-book/type-book.component";
 import {AuteurComponent} from "./auteur/auteur.component";
 import {ReservationComponent} from "./reservation/reservation.component";
 

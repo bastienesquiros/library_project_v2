@@ -14,9 +14,10 @@ import {BookComponent} from './book/book.component';
 import {UserComponent} from './user/user.component';
 import {EmprunterComponent} from './emprunter/emprunter.component';
 import {AbonneComponent} from './abonne/abonne.component';
-import {TypeBookComponent} from './type-book/type-book.component';
+import { TypeBookComponent } from './type-book/type-book.component';
 import { AuteurComponent } from './auteur/auteur.component';
 import { ReservationComponent } from './reservation/reservation.component';
+
 
 
 @NgModule({
