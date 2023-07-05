@@ -18,10 +18,25 @@
                 <td>{{ auteurs.id }}</td>
                 <td>{{ auteurs.nom }}</td>
                 <td>
-                    <button class="btn btn-primary btn-sm">Edit</button>
-                    <button (ngSubmit)="DeleteAuteur()" class="btn btn-danger btn-sm">Delete</button>
+                    <button (click)="editAuteur(auteurs)" class="btn btn-primary btn-sm">Edit</button>
+                    <button (click)="DeleteAuteur(auteurs)" class="btn btn-danger btn-sm">Delete</button>
                 </td>
             </tr>
         </tbody>
     </table>
+    <div class="col-md-6">
+        <form (submit)="submitForm()">
+
+            <div class="form-group">
+                <label for="id">ID Auteur</label>
+                <input [(ngModel)]="newAuteur.id" class="form-control" id="id" name="id" required type="number">
+            </div>
+
+            <div class="form-group">
+                <label for="nom">nom</label>
+                <input [(ngModel)]="newAuteur.nom" class="form-control" id="nom" name="nom" required type="text">
+            </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
 </div>

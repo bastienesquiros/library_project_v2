@@ -27,6 +27,11 @@ public class Ouvrage {
 	@JoinColumn(name = "id_type")
 	@JsonBackReference
 	private TypeOuvrage typeOuvrage;
+	
+	@ManyToOne (cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_auteur")
+	@JsonBackReference
+	private Auteur auteur;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JsonIgnore
