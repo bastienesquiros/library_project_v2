@@ -15,6 +15,8 @@ public class EmpruntDto {
     private Abonne abonne;
     private Exemplaire exemplaire;
 
+    private EtatEmprunt etatEmprunt;
+
 
     public EmpruntDto() {
     }
@@ -27,16 +29,18 @@ public class EmpruntDto {
         dto.setDate_fin_emprunt_reel(emprunt.getDate_fin_emprunt_reel());
         dto.setAbonne(emprunt.getAbonne());
         dto.setExemplaire(emprunt.getExemplaire());
+        dto.setEtatEmprunt(emprunt.getEtatEmprunt());
         return dto;
     }
 
-    public EmpruntDto(Integer id_emprunt, Date date_debut_emprunt, Date date_fin_emprunt_attendue, Date date_fin_emprunt_reel, Abonne abonne, Exemplaire exemplaire) {
+    public EmpruntDto(Integer id_emprunt, Date date_debut_emprunt, Date date_fin_emprunt_attendue, Date date_fin_emprunt_reel, Abonne abonne, Exemplaire exemplaire, EtatEmprunt etatEmprunt) {
         this.id_emprunt = id_emprunt;
         this.date_debut_emprunt = date_debut_emprunt;
         this.date_fin_emprunt_attendue = date_fin_emprunt_attendue;
         this.date_fin_emprunt_reel = date_fin_emprunt_reel;
         this.abonne = abonne;
         this.exemplaire = exemplaire;
+        this.etatEmprunt = etatEmprunt;
     }
 
     public Integer getId_emprunt() {
@@ -85,5 +89,13 @@ public class EmpruntDto {
 
     public void setExemplaire(Exemplaire exemplaire) {
         this.exemplaire = exemplaire;
+    }
+
+    public EtatEmprunt getEtatEmprunt() {
+        return etatEmprunt;
+    }
+
+    public void setEtatEmprunt(EtatEmprunt etatEmprunt) {
+        this.etatEmprunt = etatEmprunt;
     }
 }
