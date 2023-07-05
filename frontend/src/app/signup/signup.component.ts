@@ -34,21 +34,12 @@ export class SignupComponent {
 
     this.http.post('http://localhost:8080/utilisateur/signup', signupRequest).subscribe(
       (response: any) => {
-
-
-        if (response.loginSuccessful === true) {
-          // User authenticated successfully
-          if (response.librarian === true) {
-            this.router.navigate(['/librarianside']);
-          } else {
-            this.router.navigate(['/subscriberside']);
-          }
+        if (response) {
+          this.router.navigate(['/subscriberside']);
         } else {
-          // Authentication failed
           this.errorMessage = "Vous êtes déjà inscrit";
         }
-
-
+        
       });
   }
 }

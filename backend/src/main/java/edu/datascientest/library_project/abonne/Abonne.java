@@ -1,7 +1,6 @@
 package edu.datascientest.library_project.abonne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import edu.datascientest.library_project.emprunt.Emprunt;
 import edu.datascientest.library_project.ouvrage.Ouvrage;
 import edu.datascientest.library_project.utilisateur.Utilisateur;
@@ -33,19 +32,13 @@ public class Abonne {
             inverseJoinColumns = @JoinColumn(name = "id_ouvrage"))
     private List<Ouvrage> ouvrages;
 
-    @OneToMany(mappedBy="abonne")
+    @OneToMany(mappedBy = "abonne")
     @JsonIgnore
     private List<Emprunt> emprunts;
 
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
-    }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
+    public Abonne() {
     }
-
-    public Abonne() {}
 
     public Abonne(Integer id_abonne, Integer nb_infraction, Date date_debut_penalite, Date date_fin_penalite, Utilisateur utilisateur, List<Ouvrage> ouvrages, List<Emprunt> emprunts) {
         this.id_abonne = id_abonne;
@@ -55,6 +48,14 @@ public class Abonne {
         this.utilisateur = utilisateur;
         this.ouvrages = ouvrages;
         this.emprunts = emprunts;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
     public Integer getId_abonne() {

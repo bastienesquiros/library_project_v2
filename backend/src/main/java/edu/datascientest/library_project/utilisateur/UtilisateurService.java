@@ -1,5 +1,7 @@
 package edu.datascientest.library_project.utilisateur;
 
+import edu.datascientest.library_project.abonne.Abonne;
+import edu.datascientest.library_project.abonne.AbonneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,9 @@ import java.util.List;
 public class UtilisateurService {
     @Autowired
     private UtilisateurRepository utilisateurRepository;
+
+    @Autowired
+    private AbonneService abonneService;
 
     public void addUtilisateur(Utilisateur utilisateur) {
         utilisateurRepository.save(utilisateur);
@@ -46,16 +51,23 @@ public class UtilisateurService {
                 utilisateurInput.getMot_de_passe().equals(utilisateurToCompareWith.getMot_de_passe());
     }
 
+
     public boolean signup(Utilisateur utilisateur) {
         Utilisateur utilisateurToCompareWith = utilisateurRepository.findByLogin(utilisateur.getLogin());
 
         if (utilisateurToCompareWith == null) {
             utilisateurRepository.save(utilisateur);
+
+            Abonne abonneInit = new Abonne();
+            abonneInit.setUtilisateur(utilisateur);
+
+            abonneService.addAbonne(abonneInit);
             return true;
         }
 
         return false;
     }
+
 
     public boolean isLibrarian(Utilisateur utilisateur) {
         return utilisateurRepository.findByLogin(utilisateur.getLogin()).isBibliothecaire();
