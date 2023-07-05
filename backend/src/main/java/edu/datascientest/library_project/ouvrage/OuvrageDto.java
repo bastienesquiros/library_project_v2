@@ -19,6 +19,19 @@ public class OuvrageDto {
 
     private List<Exemplaire> exemplaires;
 
+    public static OuvrageDto convertToDto(Ouvrage ouvrage){
+        OuvrageDto dto = new OuvrageDto();
+
+        dto.setId_ouvrage(ouvrage.getId_ouvrage());
+        dto.setTitre(ouvrage.getTitre());
+        dto.setTypeOuvrage(ouvrage.getTypeOuvrage());
+        dto.setAuteurs(ouvrage.getAuteurs());
+        dto.setAuteurs(ouvrage.getAuteurs());
+        dto.setExemplaires(ouvrage.getExemplaires());
+
+        return dto;
+    }
+
     public OuvrageDto() {
     }
 

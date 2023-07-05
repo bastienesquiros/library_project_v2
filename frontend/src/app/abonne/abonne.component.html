@@ -1,5 +1,62 @@
-<ul>
-  <li *ngFor="let abonne of abonnes">
-    {{ abonne.id_abonne }} - {{ abonne.id_utilisateur }}
-  </li>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <input (input)="filterAbonnes()" [(ngModel)]="searchText" class="form-control" placeholder="Search" type="text">
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">id_utilisateur</th>
+      <th scope="col">id_abonne</th>
+      <th scope="col">date_début_pénalité</th>
+      <th scope="col">date_fin_pénalité</th>
+      <th scope="col">nb_infractions</th>
+      <th scope="col">actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let abonne of filteredAbonnes">
+      <td>{{ abonne.id_utilisateur }}</td>
+      <td>{{ abonne.id_abonne }}</td>
+      <td>{{ abonne.date_debut_penalite }}</td>
+      <td>{{ abonne.date_fin_penalite}}</td>
+      <td>{{ abonne.nb_infraction }}</td>
+      <td>
+        <button (click)="editAbonne(abonne)" class="btn btn-primary btn-sm">Edit</button>
+        <button (click)="deleteAbonne(abonne)" class="btn btn-danger btn-sm">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="col-md-6">
+    <form (submit)="submitForm()">
+
+      <div class="form-group">
+        <label for="id_utilisateur">ID Utilisateur</label>
+        <input [(ngModel)]="newAbonne.id_utilisateur" class="form-control" id="id_utilisateur" name="id_utilisateur"
+               required type="number">
+      </div>
+
+      <div class="form-group">
+        <label for="date_debut_penalite">Date de début de pénalité</label>
+        <input [(ngModel)]="newAbonne.date_debut_penalite" class="form-control" id="date_debut_penalite"
+               name="date_debut_penalite" required
+               type="date">
+      </div>
+      <div class="form-group">
+        <label for="date_fin_penalite">Date de fin de pénalité</label>
+        <input [(ngModel)]="newAbonne.date_fin_penalite" class="form-control" id="date_fin_penalite"
+               name="date_fin_penalite" required
+               type="date">
+      </div>
+      <div class="form-group">
+        <label for="nb_infraction">Nombre d'infractions</label>
+        <input [(ngModel)]="newAbonne.nb_infraction" class="form-control" id="nb_infraction" name="nb_infraction"
+               required type="number">
+      </div>
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+

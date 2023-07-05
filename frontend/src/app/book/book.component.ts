@@ -102,10 +102,10 @@ export class BookComponent {
           console.log(response);
           response.filter((e: any) => console.log(e))
           response.forEach((e: any) => {
-            this.booksIdO +=  e.id_ouvrage;
-            this.booksIdT += e.titre;
-            this.booksIdA += e.auteur;
-            this.booksIdT += e.id_type;
+            // this.booksIdO +=  e.id_ouvrage  += " / ";
+            this.booksIdT += e.titre += " / ";
+            // this.booksIdA += e.auteur += " / ";
+            // this.booksIdT += e.id_type += " / ";
           });
         } else {
           this.errorMessageUpdate = "Erreur dans la saisie";

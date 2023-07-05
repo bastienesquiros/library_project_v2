@@ -46,7 +46,7 @@ public class Ouvrage {
 	private List<Abonne> abonnes;
 
 	@OneToMany(mappedBy="ouvrage", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JsonManagedReference
+	@JsonManagedReference @JsonIgnore
 	private List<Exemplaire> exemplaires;
 
 	public Ouvrage() {	}
