@@ -17,7 +17,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let abonne of filteredAbonnes">
-      <td>{{ abonne.id_utilisateur }}</td>
+      <td>{{ abonne.utilisateur.id_utilisateur }}</td>
       <td>{{ abonne.id_abonne }}</td>
       <td>{{ abonne.date_debut_penalite }}</td>
       <td>{{ abonne.date_fin_penalite}}</td>
@@ -34,7 +34,8 @@
 
       <div class="form-group">
         <label for="id_utilisateur">ID Utilisateur</label>
-        <input [(ngModel)]="newAbonne.id_utilisateur" class="form-control" id="id_utilisateur" name="id_utilisateur"
+        <input [(ngModel)]="newAbonne.utilisateur.id_utilisateur" class="form-control" id="id_utilisateur"
+               name="id_utilisateur"
                required type="number">
       </div>
 
