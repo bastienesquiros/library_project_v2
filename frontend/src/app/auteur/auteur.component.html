@@ -1,1 +1,27 @@
-<p>auteur works!</p>
+<h1>Gestion des Auteurs</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <input (input)="filterAuteurs()" [(ngModel)]="searchText" class="form-control" placeholder="Search" type="text">
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">nom</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let auteurs of filteredAuteurs">
+                <td>{{ auteurs.id }}</td>
+                <td>{{ auteurs.nom }}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm">Edit</button>
+                    <button (ngSubmit)="DeleteAuteur()" class="btn btn-danger btn-sm">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

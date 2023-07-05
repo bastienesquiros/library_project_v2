@@ -13,6 +13,7 @@ public class AuteurController {
     @Autowired
     AuteurService auteurservice;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping
     public List<Auteur> getAuteurs() {
         return auteurservice.findAll();
