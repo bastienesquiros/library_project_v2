@@ -28,6 +28,10 @@ public class Emprunt {
 
     private Date date_fin_emprunt_reel;
 
+    @JoinColumn(name="etat_emprunt")
+    @Enumerated(EnumType.STRING)
+    private EtatEmprunt etatEmprunt;
+
     public Exemplaire getExemplaire() {
         return exemplaire;
     }
@@ -39,13 +43,14 @@ public class Emprunt {
 
     public Emprunt() {}
 
-    public Emprunt(Integer id_emprunt, Abonne abonne, Exemplaire exemplaire, Date date_debut_emprunt, Date date_fin_emprunt_attendue, Date date_fin_emprunt_reel) {
+    public Emprunt(Integer id_emprunt, Abonne abonne, Exemplaire exemplaire, Date date_debut_emprunt, Date date_fin_emprunt_attendue, Date date_fin_emprunt_reel, EtatEmprunt etatEmprunt) {
         this.id_emprunt = id_emprunt;
         this.abonne = abonne;
         this.exemplaire = exemplaire;
         this.date_debut_emprunt = date_debut_emprunt;
         this.date_fin_emprunt_attendue = date_fin_emprunt_attendue;
         this.date_fin_emprunt_reel = date_fin_emprunt_reel;
+        this.etatEmprunt = etatEmprunt;
     }
 
     public Integer getId_emprunt() {
@@ -86,5 +91,13 @@ public class Emprunt {
 
     public void setDate_fin_emprunt_reel(Date date_fin_emprunt_reel) {
         this.date_fin_emprunt_reel = date_fin_emprunt_reel;
+    }
+
+    public EtatEmprunt getEtatEmprunt() {
+        return etatEmprunt;
+    }
+
+    public void setEtatEmprunt(EtatEmprunt etatEmprunt) {
+        this.etatEmprunt = etatEmprunt;
     }
 }
