@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 
@@ -46,8 +46,8 @@ export class BookComponent {
     this.getAllOuvrage();
   };
 
-  getAllOuvrage() : void {
-    this.http.get<Ouvrage[]>("http://localhost:8080/bibliothecaire").subscribe (
+  getAllOuvrage(): void {
+    this.http.get<Ouvrage[]>("http://localhost:8080/bibliothecaire").subscribe(
       (response: Ouvrage[]) => {
         this.ouvrage = response;
         console.log(this.ouvrage);
@@ -56,7 +56,7 @@ export class BookComponent {
     )
   }
 
-  filterOuvrage() : void {
+  filterOuvrage(): void {
     if (this.searchText.trim() === '') {
       // If search text is empty, show all abonnes
       this.filteredOuvrage = this.ouvrage;
@@ -71,11 +71,11 @@ export class BookComponent {
     }
   }
 
-  DeleteOuvrage(ouvrage: Ouvrage) : void {
+  DeleteOuvrage(ouvrage: Ouvrage): void {
     this.http.delete('http://localhost:8080/bibliothecaire/' + ouvrage.id_ouvrage).subscribe(
       (response: any) => {
         if (response) {
-          console.log("l'auteur supprimé est : ", response.nom );
+          console.log("l'auteur supprimé est : ", response.nom);
           this.getAllOuvrage();
         }
       }
@@ -94,7 +94,7 @@ export class BookComponent {
           id: this.newOuvrage.auteurs.id
         },
         typeOuvrage: {
-          id: this.newOuvrage.auteurs.id
+          id: this.newOuvrage.typeOuvrage.id
         },
       };
 
@@ -108,7 +108,7 @@ export class BookComponent {
           id: this.newOuvrage.auteurs.id
         },
         typeOuvrage: {
-          id: this.newOuvrage.auteurs.id
+          id: this.newOuvrage.typeOuvrage.id
         },
       };
 
