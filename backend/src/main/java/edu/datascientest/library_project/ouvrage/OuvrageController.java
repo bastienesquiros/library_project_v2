@@ -1,5 +1,6 @@
 package edu.datascientest.library_project.ouvrage;
 
+import edu.datascientest.library_project.auteur.Auteur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,12 +45,13 @@ public class OuvrageController {
     //creer
     @PostMapping
     public void addOuvrage(@RequestBody Ouvrage ouvrage){
+
         service.save(ouvrage);
     }
 
 
     //modifier
-    @PostMapping("/update")
+    @PutMapping("/update")
     public void updateOuvrage(@RequestBody Ouvrage ouvrage){
         service.save(ouvrage);
     }

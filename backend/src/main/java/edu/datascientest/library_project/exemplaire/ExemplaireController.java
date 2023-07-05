@@ -49,7 +49,7 @@ public class ExemplaireController {
 
 
     //modifier
-    @PostMapping("/update")
+    @PutMapping("/update")
     public void updateExemplaire(@RequestBody  Exemplaire exemplaire){
         service.save(exemplaire);
     }

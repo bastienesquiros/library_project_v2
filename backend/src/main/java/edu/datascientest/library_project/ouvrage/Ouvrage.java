@@ -23,18 +23,18 @@ public class Ouvrage {
 	private Integer id_ouvrage;
 	private String titre;
 
-	@ManyToOne (cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "id_type")
-	@JsonBackReference
+	@JsonBackReference(value="ouvrage-typeouvrage")
 	private TypeOuvrage typeOuvrage;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JsonIgnore
 	@JoinTable(
 		name="ecrire",
 		joinColumns = @JoinColumn(name = "id_ouvrage"),
 		inverseJoinColumns = @JoinColumn(name="id_auteur")
 	)
+	@JsonBackReference(value="ouvrage-auteur")
 	private List<Auteur> auteurs;
 
 	@ManyToMany(fetch = FetchType.EAGER) @JsonIgnore
@@ -43,6 +43,7 @@ public class Ouvrage {
 		joinColumns = @JoinColumn(name = "id_ouvrage"),
 		inverseJoinColumns = @JoinColumn(name = "id_abonne")
 		)
+	@JsonBackReference(value="ouvrage-abonne")
 	private List<Abonne> abonnes;
 
 	@OneToMany(mappedBy="ouvrage", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

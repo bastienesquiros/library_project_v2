@@ -3,7 +3,9 @@ package edu.datascientest.library_project.auteur;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import edu.datascientest.library_project.ouvrage.Ouvrage;
 import jakarta.persistence.*;
 
@@ -23,6 +25,7 @@ public class Auteur {
 		inverseJoinColumns = @JoinColumn(name = "id_ouvrage")
 	)
 	@JsonIgnoreProperties
+	@JsonBackReference(value="ouvrage-auteur")
 	private List<Ouvrage> ouvrages;
 	
 	

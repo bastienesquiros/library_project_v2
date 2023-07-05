@@ -1,5 +1,7 @@
 package edu.datascientest.library_project.type_ouvrage;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import edu.datascientest.library_project.ouvrage.Ouvrage;
 import jakarta.persistence.*;
 
@@ -19,6 +21,8 @@ public class TypeOuvrage {
     @Column(nullable = false)
     private String type;
     @OneToMany(mappedBy="typeOuvrage")
+    @JsonManagedReference
+    @JsonBackReference(value="ouvrage-typeouvrage")
     private List<Ouvrage> ouvrages;
 
     public TypeOuvrage() {

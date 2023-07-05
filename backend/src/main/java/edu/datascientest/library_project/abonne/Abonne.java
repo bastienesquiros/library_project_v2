@@ -1,5 +1,6 @@
 package edu.datascientest.library_project.abonne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import edu.datascientest.library_project.emprunt.Emprunt;
@@ -31,6 +32,7 @@ public class Abonne {
             name = "reserve",
             joinColumns = @JoinColumn(name = "id_abonne"),
             inverseJoinColumns = @JoinColumn(name = "id_ouvrage"))
+    @JsonBackReference(value="ouvrage-abonne")
     private List<Ouvrage> ouvrages;
 
     @OneToMany(mappedBy="abonne")
