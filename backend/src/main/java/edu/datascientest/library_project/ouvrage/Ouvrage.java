@@ -23,14 +23,14 @@ public class Ouvrage {
 	private Integer id_ouvrage;
 	private String titre;
 
-	@ManyToOne (cascade = CascadeType.ALL)
+	@ManyToOne //(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_type")
-	@JsonBackReference
+	@JsonBackReference(value="ouvrage-typeouvrage")
 	private TypeOuvrage typeOuvrage;
 	
-	@ManyToOne (cascade = CascadeType.ALL)
+	@ManyToOne //(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_auteur")
-	@JsonBackReference
+	@JsonBackReference(value="ouvrage-auteur")
 	private Auteur auteur;
 
 	@ManyToMany(fetch = FetchType.EAGER)

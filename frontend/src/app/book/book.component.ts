@@ -6,11 +6,11 @@ interface Ouvrage {
   id_ouvrage: number;
   titre: string;
   auteurs: {
-    id_auteur: number;
+    id: number;
     nom: string;
   };
   typeOuvrage: {
-    id_type: number;
+    id: number;
     type: string;
   };
 }
@@ -30,11 +30,11 @@ export class BookComponent {
     id_ouvrage: 0,
     titre: '',
     auteurs: {
-      id_auteur: 0,
+      id: 0,
       nom: ''
     },
     typeOuvrage: {
-      id_type: 0,
+      id: 0,
       type: ''
     }
   }
@@ -50,7 +50,7 @@ export class BookComponent {
     this.http.get<Ouvrage[]>("http://localhost:8080/bibliothecaire").subscribe (
       (response: Ouvrage[]) => {
         this.ouvrage = response;
-        console.log(this.newOuvrage.auteurs.id_auteur, " + ", this.newOuvrage.auteurs.nom, " + ", this.newOuvrage.typeOuvrage.id_type, " + ", this.newOuvrage.typeOuvrage.type);
+        console.log(this.ouvrage);
         this.filterOuvrage();
       }
     )
@@ -65,8 +65,8 @@ export class BookComponent {
       this.filteredOuvrage = this.ouvrage.filter(ouvrage =>
         ouvrage.id_ouvrage.toString().includes(this.searchText.trim()) ||
         ouvrage.titre.toString().includes(this.searchText.trim()) ||
-        ouvrage.auteurs.id_auteur.toString().includes(this.searchText.trim()) ||
-        ouvrage.typeOuvrage.id_type.toString().includes(this.searchText.trim())
+        ouvrage.auteurs.id.toString().includes(this.searchText.trim()) ||
+        ouvrage.typeOuvrage.id.toString().includes(this.searchText.trim())
       );
     }
   }
@@ -89,10 +89,13 @@ export class BookComponent {
   submitForm(): void {
     if (this.newOuvrage.id_ouvrage) {
       const requestPut = {
-        id: this.newOuvrage.id_ouvrage,
         titre: this.newOuvrage.titre,
-        id_auteur: this.newOuvrage.auteurs.id_auteur,
-        id_type: this.newOuvrage.typeOuvrage.id_type
+        auteur: {
+          id: this.newOuvrage.auteurs.id
+        },
+        typeOuvrage: {
+          id: this.newOuvrage.auteurs.id
+        },
       };
 
       this.http.put('http://localhost:8080/bibliothecaire', requestPut).subscribe((response: any) => {
@@ -100,10 +103,13 @@ export class BookComponent {
       });
     } else {
       const requestPost = {
-        id: this.newOuvrage.id_ouvrage,
         titre: this.newOuvrage.titre,
-        id_auteur: this.newOuvrage.auteurs.id_auteur,
-        id_type: this.newOuvrage.typeOuvrage.id_type
+        auteur: {
+          id: this.newOuvrage.auteurs.id
+        },
+        typeOuvrage: {
+          id: this.newOuvrage.auteurs.id
+        },
       };
 
       this.http.post('http://localhost:8080/bibliothecaire', requestPost).subscribe((response: any) => {
@@ -122,94 +128,13 @@ export class BookComponent {
       id_ouvrage: 0,
       titre: '',
       auteurs: {
-        id_auteur: 0,
+        id: 0,
         nom: ''
       },
       typeOuvrage: {
-        id_type: 0,
+        id: 0,
         type: ''
       }
     };
   }
-
-  // PostBook(): void {
-  //   const bookRequest = {
-  //     titre: this.titre,
-  //     id_auteur: this.id_auteur,
-  //     id_type: this.id_type
-  //   };
-    
-  //   this.http.post('http://localhost:8080/bibliothecaire', bookRequest).subscribe(
-  //     (response: any) => {
-  //       if (response) {
-  //         console.log('le livre : ', this.titre, ' a était ajouté');
-  //       } else {
-  //         this.errorMessage = "Erreur dans la saisie";
-  //       }
-  //     }
-  //   );
-  // }
-
-  // GetBookById(): void {
-  //   this.http.get('http://localhost:8080/bibliothecaire/ouvrage?id=' + this.id).subscribe(
-  //     (response: any) => {
-  //       if (response) {
-  //         console.log('le livre recherché est : ', response.titre );
-  //         this.bookById = response.titre;
-  //       } else {
-  //         this.errorMessageGetById = "Erreur dans la saisie";
-  //       }
-  //     }
-  //   );
-  // }
-
-  // DeleteBook(): void {
-  //   this.http.delete('http://localhost:8080/bibliothecaire/' + this.id_to_delete).subscribe(
-  //     (response: any) => {
-  //       if (response) {
-  //         console.log('le livre supprimé est : ', response.titre );
-  //         console.log('http://localhost:8080/bibliothecaire/' + this.id_to_delete);
-  //       } else {
-  //         this.errorMessageDelete = "Erreur dans la saisie";
-  //       }
-  //     }
-  //   );
-  // }
-
-  // UpdateBook(): void {
-  //   const updateRequest = {
-  //     id: this.id_to_update,
-  //     titre: this.titre_to_update,
-  //     id_auteur: this.id_auteur_to_update,
-  //     id_type: this.id_type_to_update
-  //   };
-  //   this.http.put('http://localhost:8080/bibliothecaire', updateRequest).subscribe(
-  //     (response: any) => {
-  //       if (response) {
-  //         console.log('le livre : ', this.titre_to_update, ' a était modifié');
-  //       } else {
-  //         this.errorMessageUpdate = "Erreur dans la saisie";
-  //       }
-  //     }
-  //   );
-  // }
-
-  // GetBooks(): void {
-  //   this.http.get('http://localhost:8080/bibliothecaire').subscribe(
-  //     (response: any) => {
-  //       if (response) {
-  //         console.log(response);
-  //         response.filter((e: any) => console.log(e))
-  //         response.forEach((e: any) => {
-  //           // this.booksIdO +=  e.id  += " / ";
-  //           this.booksIdT += e.titre += " / ";
-  //           // this.booksIdA += e.id_auteur += " / ";
-  //           // this.booksIdT += e.id_type += " / ";
-  //         });
-  //       } else {
-  //         this.errorMessageUpdate = "Erreur dans la saisie";
-  //       }
-  //     }
-  //   );
-  // }
 }
