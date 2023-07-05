@@ -1,4 +1,4 @@
-<form (ngSubmit)="PostBook()" class="mb-4">
+<!-- <form (ngSubmit)="PostBook()" class="mb-4">
     <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
         {{ errorMessage }}
     </div>
@@ -76,4 +76,61 @@
         </div>
         <p> {{ booksIdT }} </p>
     </div>
-</form>
+</form> -->
+
+<h1>Gestion des Ouvrages</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <input (input)="filterOuvrage()" [(ngModel)]="searchText" class="form-control" placeholder="Search" type="text">
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">titre</th>
+                <th scope="col">id_auteur</th>
+                <th scope="col">id_type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ouvrage of filteredOuvrage">
+                <td>{{ ouvrage.id_ouvrage }}</td>
+                <td>{{ ouvrage.titre }}</td>
+                <td>{{ ouvrage.auteurs.id_auteur }}</td>
+                <td>{{ ouvrage.typeOuvrage.id_type }}</td>
+                <td>
+                    <button (click)="editOuvrage(ouvrage)" class="btn btn-primary btn-sm">Edit</button>
+                    <button (click)="DeleteOuvrage(ouvrage)" class="btn btn-danger btn-sm">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="col-md-6">
+        <form (submit)="submitForm()">
+
+            <div class="form-group">
+                <label for="id">ID Ouvrage</label>
+                <input [(ngModel)]="newOuvrage.id_ouvrage" class="form-control" id="id" name="id" required type="number">
+            </div>
+
+            <div class="form-group">
+                <label for="titre">titre</label>
+                <input [(ngModel)]="newOuvrage.titre" class="form-control" id="titre" name="titre" required type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="titre">ID Auteur</label>
+                <input [(ngModel)]="newOuvrage.auteurs.id_auteur" class="form-control" id="id_auteur" name="id_auteur" required type="number">
+            </div>
+
+            <div class="form-group">
+                <label for="titre">ID Type</label>
+                <input [(ngModel)]="newOuvrage.typeOuvrage.id_type" class="form-control" id="id_type" name="id_type" required type="number">
+            </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
