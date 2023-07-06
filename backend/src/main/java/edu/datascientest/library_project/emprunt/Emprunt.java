@@ -15,11 +15,12 @@ public class Emprunt {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id_emprunt;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="id_abonne") @JsonBackReference  @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name="id_abonne")  
+    @JsonIgnore
     private Abonne abonne;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_exemplaire")	@JsonBackReference
     private Exemplaire exemplaire;
 
@@ -27,10 +28,6 @@ public class Emprunt {
     private Date date_fin_emprunt_attendue;
 
     private Date date_fin_emprunt_reel;
-
-    @JoinColumn(name="etat_emprunt")
-    @Enumerated(EnumType.STRING)
-    private EtatEmprunt etatEmprunt;
 
     public Exemplaire getExemplaire() {
         return exemplaire;
@@ -43,14 +40,13 @@ public class Emprunt {
 
     public Emprunt() {}
 
-    public Emprunt(Integer id_emprunt, Abonne abonne, Exemplaire exemplaire, Date date_debut_emprunt, Date date_fin_emprunt_attendue, Date date_fin_emprunt_reel, EtatEmprunt etatEmprunt) {
+    public Emprunt(Integer id_emprunt, Abonne abonne, Exemplaire exemplaire, Date date_debut_emprunt, Date date_fin_emprunt_attendue, Date date_fin_emprunt_reel) {
         this.id_emprunt = id_emprunt;
         this.abonne = abonne;
         this.exemplaire = exemplaire;
         this.date_debut_emprunt = date_debut_emprunt;
         this.date_fin_emprunt_attendue = date_fin_emprunt_attendue;
         this.date_fin_emprunt_reel = date_fin_emprunt_reel;
-        this.etatEmprunt = etatEmprunt;
     }
 
     public Integer getId_emprunt() {
@@ -93,11 +89,12 @@ public class Emprunt {
         this.date_fin_emprunt_reel = date_fin_emprunt_reel;
     }
 
-    public EtatEmprunt getEtatEmprunt() {
-        return etatEmprunt;
-    }
-
-    public void setEtatEmprunt(EtatEmprunt etatEmprunt) {
-        this.etatEmprunt = etatEmprunt;
-    }
+	@Override
+	public String toString() {
+		return "Emprunt [id_emprunt=" + id_emprunt + ", abonne=" + abonne + ", exemplaire=" + exemplaire
+				+ ", date_debut_emprunt=" + date_debut_emprunt + ", date_fin_emprunt_attendue="
+				+ date_fin_emprunt_attendue + ", date_fin_emprunt_reel=" + date_fin_emprunt_reel + "]";
+	}
+    
+    
 }

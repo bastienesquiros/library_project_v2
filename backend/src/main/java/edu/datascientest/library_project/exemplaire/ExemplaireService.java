@@ -1,6 +1,5 @@
 package edu.datascientest.library_project.exemplaire;
 
-import edu.datascientest.library_project.type_ouvrage.TypeOuvrage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

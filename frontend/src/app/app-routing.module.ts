@@ -9,6 +9,7 @@ import {AbonneComponent} from "./abonne/abonne.component";
 import {TypeBookComponent } from "./type-book/type-book.component";
 import {AuteurComponent} from "./auteur/auteur.component";
 import {ReservationComponent} from "./reservation/reservation.component";
+import {EmprunterComponent} from './emprunter/emprunter.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path: 'managesubscribers', component: AbonneComponent},
   {path: 'managetypebooks', component: TypeBookComponent},
   {path: 'manageauthors', component: AuteurComponent},
-  {path: 'managereservations', component: ReservationComponent}
+  {path: 'managereservations', component: ReservationComponent},
+  {path: 'manageemprunter', component: EmprunterComponent}
 
 ];
 
