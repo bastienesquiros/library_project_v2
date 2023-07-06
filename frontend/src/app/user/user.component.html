@@ -1,4 +1,4 @@
-<form (ngSubmit)="PostUser()" class="mb-4">
+<!-- <form (ngSubmit)="PostUser()" class="mb-4">
 
     <div class="container">
         <div class="form-group">
@@ -95,4 +95,80 @@
         </div>
         <p> {{ usersIdT }} </p>
     </div>
-</form>
+</form> -->
+
+<h1>Gestion des Users</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <input (input)="filterUser()" [(ngModel)]="searchText" class="form-control" placeholder="Search" type="text">
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">nom</th>
+                <th scope="col">prenom</th>
+                <th scope="col">adresse</th>
+                <th scope="col">login</th>
+                <th scope="col">mot de passe</th>
+                <th scope="col">bibliothecaire</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of filteredUser">
+                <td>{{ user.id_utilisateur }}</td>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.adresse }}</td>
+                <td>{{ user.login }}</td>
+                <td>{{ user.mot_de_passe }}</td>
+                <td>{{ user.bibliothecaire }}</td>
+                <td>
+                    <button (click)="editUser(user)" class="btn btn-primary btn-sm">Edit</button>
+                    <button (click)="DeleteUser(user)" class="btn btn-danger btn-sm">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="col-md-6">
+        <form (submit)="submitForm()">
+
+            <div class="form-group">
+                <label for="nom">nom</label>
+                <input [(ngModel)]="newUser.nom" class="form-control" id="nom" name="nom" required type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="prenom">prenom</label>
+                <input [(ngModel)]="newUser.prenom" class="form-control" id="prenom" name="prenom" required type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="adresse">adresse</label>
+                <input [(ngModel)]="newUser.adresse" class="form-control" id="adresse" name="adresse" required type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="login">login</label>
+                <input [(ngModel)]="newUser.login" class="form-control" id="login" name="login" required type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="mot_de_passe">mot de passe</label>
+                <input [(ngModel)]="newUser.mot_de_passe" class="form-control" id="mot_de_passe" name="mot_de_passe" required type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="bool1">Oui</label>
+                <input [(ngModel)]="newUser.bibliothecaire" class="form-control" id="bool1" name="bool1" type="radio" value="true">
+
+                <label for="bool0">Non</label>
+                <input [(ngModel)]="newUser.bibliothecaire" class="form-control" id="bool0" name="bool0" type="radio" value="false" />
+            </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
