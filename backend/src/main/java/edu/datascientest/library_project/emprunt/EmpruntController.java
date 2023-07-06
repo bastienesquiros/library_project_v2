@@ -17,6 +17,7 @@ public class EmpruntController {
     @PostMapping
     public void addEmprunt(@RequestBody @Valid Emprunt emprunt) {
         //System.out.println(emprunt.getId_abonne() + "TESST");
+    	System.out.println(emprunt);
         empruntService.addEmprunt(emprunt);
     }
 

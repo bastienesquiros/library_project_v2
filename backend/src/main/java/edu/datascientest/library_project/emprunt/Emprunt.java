@@ -15,11 +15,12 @@ public class Emprunt {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id_emprunt;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="id_abonne") @JsonBackReference  @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name="id_abonne")  
+    @JsonIgnore
     private Abonne abonne;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_exemplaire")	@JsonBackReference
     private Exemplaire exemplaire;
 
@@ -87,4 +88,13 @@ public class Emprunt {
     public void setDate_fin_emprunt_reel(Date date_fin_emprunt_reel) {
         this.date_fin_emprunt_reel = date_fin_emprunt_reel;
     }
+
+	@Override
+	public String toString() {
+		return "Emprunt [id_emprunt=" + id_emprunt + ", abonne=" + abonne + ", exemplaire=" + exemplaire
+				+ ", date_debut_emprunt=" + date_debut_emprunt + ", date_fin_emprunt_attendue="
+				+ date_fin_emprunt_attendue + ", date_fin_emprunt_reel=" + date_fin_emprunt_reel + "]";
+	}
+    
+    
 }

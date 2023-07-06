@@ -1,1 +1,85 @@
-<p>emprunter works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <input (input)="filterEmprunt()" [(ngModel)]="searchText" class="form-control" placeholder="Search" type="text">
+      </div>
+    </div>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">id_exemplaire</th>
+        <th scope="col">id_abonne</th>
+        <th scope="col">id_emprunt</th>
+        <th scope="col">date_debut_emprunt</th>
+        <th scope="col">date_fin_emprunt_attendue</th>
+        <th scope="col">date_fin_emprunt_reel</th>
+        <th scope="col">etat_emprunt</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let emprunt of filteredEmprunt">
+        <td>{{ emprunt.exemplaire.id_exemplaire }}</td>
+        <td>{{ emprunt.abonne.id_abonne }}</td>
+        <td>{{ emprunt.id_emprunt }}</td>
+        <td>{{ emprunt.date_debut_emprunt}}</td>
+        <td>{{ emprunt.date_fin_emprunt_attendue}}</td>
+        <td>{{ emprunt.date_fin_emprunt_reel}}</td>
+        <td>{{ emprunt.etat_emprunt}}</td>
+        <td>
+          <button (click)="editEmprunt(emprunt)" class="btn btn-primary btn-sm">Edit</button>
+          <button (click)="deleteEmprunt(emprunt)" class="btn btn-danger btn-sm">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="col-md-6">
+      <form (submit)="submitForm()">
+  
+        <div class="form-group">
+          <label for="id_exemplaire">ID EXEMPLAIRE</label>
+          <input [(ngModel)]="newEmprunt.exemplaire.id_exemplaire" class="form-control" id="id_exemplaire"
+                 name="id_exemplaire"
+                 required type="number">
+        </div>
+  
+        <div class="form-group">
+          <label for="id_abonne">ID ABONNE</label>
+          <input [(ngModel)]="newEmprunt.abonne.id_abonne" class="form-control" id="id_abonne"
+                 name="id_abonne" required
+                 type="number">
+        </div>
+        <div class="form-group">
+            <label for="id_emprunt">ID EMPRUNT</label>
+            <input [(ngModel)]="newEmprunt.id_emprunt" class="form-control" id="id_exemplaire"
+                   name="id_exemplaire" required
+                   type="number">
+          </div>
+        <div class="form-group">
+          <label for="date_debut_emprunt"> Date_debut_emprunt</label>
+          <input [(ngModel)]="newEmprunt.date_debut_emprunt" class="form-control" id="date_debut_emprunt"
+                 name="date_debut_emprunt" required
+                 type="date">
+        </div>
+        <div class="form-group">
+            <label for="date_fin_emprunt_attendue"> Date de fin attendue</label>
+            <input [(ngModel)]="newEmprunt.date_fin_emprunt_attendue" class="form-control" id="date_fin_emprunt_attendue"
+                   name="date_fin_emprunt_attendue" required
+                   type="date">
+          </div>
+          <div class="form-group">
+            <label for="date_fin_emprunt_reel"> Date de fin reelle</label>
+            <input [(ngModel)]="newEmprunt.date_fin_emprunt_reel" class="form-control" id="date_fin_emprunt_reel"
+                   name="date_fin_emprunt_reel" required
+                   type="date">
+          </div>
+        <div class="form-group">
+          <label for="etat_emprunt">Etat Emprunt</label>
+          <input [(ngModel)]="newEmprunt.etat_emprunt" class="form-control" id="etat_emprunt" name="etat_emprunt"
+                 required type="string">
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+  
+  
