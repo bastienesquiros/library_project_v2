@@ -13,8 +13,8 @@ public class EmpruntService {
 
     public void addEmprunt(Emprunt emprunt) {
 
-        emprunt.setDate_debut_emprunt(Date.valueOf(java.time.LocalDate.now()));
-        emprunt.setDate_fin_emprunt_attendue(Date.valueOf(java.time.LocalDate.now().plusDays(5)));
+//        emprunt.setDate_debut_emprunt(Date.valueOf(java.time.LocalDate.now()));
+//        emprunt.setDate_fin_emprunt_attendue(Date.valueOf(java.time.LocalDate.now().plusDays(5)));
         empruntRepository.save(emprunt);
     }
 

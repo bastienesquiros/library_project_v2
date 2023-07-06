@@ -2,6 +2,7 @@ package edu.datascientest.library_project.exemplaire;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import edu.datascientest.library_project.abonne.Abonne;
 import edu.datascientest.library_project.emprunt.Emprunt;
 import edu.datascientest.library_project.ouvrage.Ouvrage;
 import jakarta.persistence.*;
@@ -16,12 +17,16 @@ public class Exemplaire {
     private Integer id_exemplaire;
     @Enumerated(EnumType.STRING)
     private Etat etat;
-    @ManyToOne(targetEntity= Ouvrage.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity= Ouvrage.class, fetch = FetchType.EAGER)
     @JoinColumn(name="id_ouvrage")
-    @JsonBackReference
+    @JsonBackReference(value="exemplaire-ouvrage")
     private Ouvrage ouvrage;
+
     @OneToMany(mappedBy="exemplaire")
+    @JsonBackReference(value="exemplaire-emprunts")
     private List<Emprunt> emprunts;
+
+
 
     public Exemplaire() {
     }
